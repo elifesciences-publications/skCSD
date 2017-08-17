@@ -1,0 +1,1 @@
+/home/spirit/agy/ksCSD_2014/trunk/simulation/morphology/active.hoc
