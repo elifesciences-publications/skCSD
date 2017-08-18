@@ -10,10 +10,31 @@ These various parts have different software dependencies and aims so they will b
 
 ## Simulation of membrane currents and virtual recodigs of extracellular potentials
 
-lfpy_D14.R
+### Dependencies:
+Software dependencies
+LFPy with NEURON module installed (see: http://lfpy.github.io/information.html)
+R  and RStudio
+
+R package dependencies: rgl, gWidgets, scatterplot3d, MASS (To install there, start RStudio and type 
+> install.packages(c("rgl", "gWidgets", "scatterplot3d", "MASS")))
+
+
+### How to run:
+Start RStudio and start the folowing scriopt in the main folder of the scripts  and type 
+> source("lfpy_D14.R")
+
 Script to create dataset for validation. Loads morphology files then runs NEURON mechanism via LFPy to get biologically realistic electrophysiological data and extracellular potential recording on the selected grid  setup.
+
+
+### Test cases:
+
+### Required input files:
+
+### Additional used files and what they do
+
 File dependencies:
-'/simulation/ElcoordsDomi14.txt': electrode  coordinates for experimenal data
+
+'/simulation/ElcoordsDomi14.txt' : electrode  coordinates for experimenal data
 '/simulation/morphology/ballstick.swc' : ballstick morp: hology file
 '/simulation/morphology/villa.swc' : Y-shaped neuron morphology file
 '/simulation/morphology/morpho1.swc' : unknown morphology !!!!!!!!!!!!!!!!!!!!!
@@ -33,14 +54,6 @@ Python scripts to run LFPy running NEURON:
 'simulation/LFP_calc_sine.py' #oscillatory inputs
 'simulation/LFP_calc_constInj.py' #constant current injection to soma
    
-
-Package dependencies: 
-rgl, gWidgets, scatterplot3d, MASS
-a working LFPy is needed to run these simnulations which requires certain python packages an NEURON simulational environment
-
-Test cases
-
-Required input files
 
 
 ## skCSD reconstruction of membrane currents from extracellular potentials using the morhology of the cell
