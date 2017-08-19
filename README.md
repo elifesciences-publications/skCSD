@@ -34,27 +34,17 @@ Script to create dataset for validation. Loads morphology files then runs NEURON
 
 File dependencies:
 
-'/simulation/ElcoordsDomi14.txt' : electrode  coordinates for experimenal data
-
-'/simulation/morphology/ballstick.swc' : ballstick morp: hology file
-
-'/simulation/morphology/villa.swc' : Y-shaped neuron morphology file
-
-'/simulation/morphology/morpho1.swc' : unknown morphology !!!!!!!!!!!!!!!!!!!!!
-
-'/simulation/morphology/neuron_agasbogas.swc' : file not found , but in the script, should remove it!!!!!!!!!!!!!!
-
-'/simulation/morphology/Mainen_swcLike.swc' : Mainen neuron morphology,  not in the paper
-
-'/simulation/morphology/retina_ganglion.swc': small ganglion, not  in paper
-
-'/simulation/morphology/Badea2011Fig2Du.CNG.swc':  retinal ganglion cell
-
-'/simulation/morphology/DomiCell.swc': morphology of pyramidal cell from experiment
-
-'/simulation/morphology/active.hoc': inserting active ion-channels to soma
-
-'/alprogik/sCSDFun.R': calculating sCSD (for ballstick neurons only)
+'/simulation/ElcoordsDomi14.txt'  electrode  coordinates for experimenal data
+'/simulation/morphology/ballstick.swc'  ballstick morp: hology file
+'/simulation/morphology/villa.swc'  Y-shaped neuron morphology file
+'/simulation/morphology/morpho1.swc'  unknown morphology !!!!!!!!!!!!!!!!!!!!!
+'/simulation/morphology/neuron_agasbogas.swc'  file not found , but in the script, should remove it!!!!!!!!!!!!!!
+'/simulation/morphology/Mainen_swcLike.swc'  Mainen neuron morphology,  not in the paper
+'/simulation/morphology/retina_ganglion.swc' small ganglion, not  in paper
+'/simulation/morphology/Badea2011Fig2Du.CNG.swc'  retinal ganglion cell
+'/simulation/morphology/DomiCell.swc' morphology of pyramidal cell from experiment
+'/simulation/morphology/active.hoc' inserting active ion-channels to soma
+'/alprogik/sCSDFun.R' calculating sCSD (for ballstick neurons only)
 
 Python scripts to run LFPy running NEURON:
 
