@@ -40,7 +40,7 @@ kernel_calc <- function() {
     #reading in electrode coordinates
     
     elec.kord <- as.matrix(read.table(svalue(elec.cord.location)))
-    
+    elec.kord<-matrix(elec.kord,ncol=3)
     
     #number of electrodes
     #LFP

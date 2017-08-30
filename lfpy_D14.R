@@ -1,8 +1,9 @@
 #This script is for the simulation of the extracellular potential of a single cell based on a morphology and some other defined parameter.
 
-
-#options(guiToolkit = "RGtk2")
+library(gWidgetsRGtk2)
+options(guiToolkit = "RGtk2")
 require(gWidgets)
+
 #install.packages("gWidgetsRGtk2", dep=TRUE)
 library('scatterplot3d')
 library("rgl")
