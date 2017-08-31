@@ -28,9 +28,9 @@ kernel_calc <- function() {
     basis.width.max<-svalue(basis.width.max.g)
     basis.width.step<-svalue(basis.width.step.g)
     
-    basis.number.min<-svalue(basis.number.min.g)
-    basis.number.max<-svalue(basis.number.max.g)
-    basis.number.step<-svalue(basis.number.step.g)
+    basis.reg.min<-svalue(basis.reg.min.g)
+    basis.reg.max<-svalue(basis.reg.max.g)
+    basis.reg.step<-svalue(basis.reg.step.g)
     
 
     
@@ -73,8 +73,8 @@ kernel_calc <- function() {
     #source('/media/BA0ED4600ED416EB/agy/ksCSD_SVN/trunk/alprogik/egyesitett_ksCSDguihoz.R',local=TRUE)
     
     #Rprof('profilekernel_sim.out',memory.profiling=TRUE)
-    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.number.min, 
-                              basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) 
+    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.reg.min, 
+                              basis.reg.max, basis.reg.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) 
     #Rprof(NULL)
     image(t(sCSD_currents))
   }
@@ -89,29 +89,29 @@ kernel_calc <- function() {
   
   
   #Setting the parameters
-  tmp <- gframe("Width of basis functions", container=gp, expand=TRUE)
+  tmp <- gframe("Width of basis functions R=2^k", container=gp, expand=TRUE)
   
   
   glabel("R min:", container=tmp)
-  basis.width.min.g<-gedit("10", container=tmp, coerce.with=as.numeric)
+  basis.width.min.g<-gedit("3", container=tmp, coerce.with=as.numeric)
   
   glabel("R max:", container=tmp)
-  basis.width.max.g<-gedit("100", container=tmp, coerce.with=as.numeric)
+  basis.width.max.g<-gedit("7", container=tmp, coerce.with=as.numeric)
   
   glabel("R step:", container=tmp)
-  basis.width.step.g<-gedit("10", container=tmp, coerce.with=as.numeric)
+  basis.width.step.g<-gedit("1", container=tmp, coerce.with=as.numeric)
   
-  ##M number of basis function
+  ##Lambda regularization parameter
   #M=2^k....
-  tmp <- gframe("Number of basis functions M=2^k", container=gp, expand=TRUE)
-  glabel("k min:", container=tmp)
-  basis.number.min.g<-gedit("4", container=tmp, coerce.with=as.numeric)
+  tmp <- gframe("Lambda regularization parameter 10^k", container=gp, expand=TRUE)
+  glabel("lambda min:", container=tmp)
+  basis.reg.min.g<-gedit("-5", container=tmp, coerce.with=as.numeric)
   
-  glabel("k max:", container=tmp)
-  basis.number.max.g<-gedit("10", container=tmp, coerce.with=as.numeric)
+  glabel("lambda max:", container=tmp)
+  basis.reg.max.g<-gedit("-1", container=tmp, coerce.with=as.numeric)
   
-  glabel("k step:", container=tmp)
-  basis.number.step.g<-gedit("1", container=tmp, coerce.with=as.numeric)
+  glabel("lambda step:", container=tmp)
+  basis.reg.step.g<-gedit("1", container=tmp, coerce.with=as.numeric)
 
 
   

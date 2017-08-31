@@ -34,42 +34,62 @@ Script to create dataset for validation. Loads morphology files then runs NEURON
 
 File dependencies:
 
-'/simulation/ElcoordsDomi14.txt'  electrode  coordinates for experimenal data
-'/simulation/morphology/ballstick.swc'  ballstick morp: hology file
-'/simulation/morphology/villa.swc'  Y-shaped neuron morphology file
-'/simulation/morphology/morpho1.swc'  unknown morphology !!!!!!!!!!!!!!!!!!!!!
-'/simulation/morphology/neuron_agasbogas.swc'  file not found , but in the script, should remove it!!!!!!!!!!!!!!
-'/simulation/morphology/Mainen_swcLike.swc'  Mainen neuron morphology,  not in the paper
-'/simulation/morphology/retina_ganglion.swc' small ganglion, not  in paper
-'/simulation/morphology/Badea2011Fig2Du.CNG.swc'  retinal ganglion cell
-'/simulation/morphology/DomiCell.swc' morphology of pyramidal cell from experiment
-'/simulation/morphology/active.hoc' inserting active ion-channels to soma
-'/alprogik/sCSDFun.R' calculating sCSD (for ballstick neurons only)
+- '/simulation/ElcoordsDomi14.txt'  electrode  coordinates for experimenal data
+- '/simulation/morphology/ballstick.swc'  ballstick morp: hology file
+- '/simulation/morphology/villa.swc'  Y-shaped neuron morphology file
+- '/simulation/morphology/morpho1.swc'  unknown morphology !!!!!!!!!!!!!!!!!!!!!
+- '/simulation/morphology/neuron_agasbogas.swc'  file not found , but in the script, should remove it!!!!!!!!!!!!!!
+- '/simulation/morphology/Mainen_swcLike.swc'  Mainen neuron morphology,  not in the paper
+- '/simulation/morphology/retina_ganglion.swc' small ganglion, not  in paper
+- '/simulation/morphology/Badea2011Fig2Du.CNG.swc'  retinal ganglion cell
+- '/simulation/morphology/DomiCell.swc' morphology of pyramidal cell from experiment
+- '/simulation/morphology/active.hoc' inserting active ion-channels to soma
+- '/alprogik/sCSDFun.R' calculating sCSD (for ballstick neurons only)
 
-Python scripts to run LFPy running NEURON:
+#### Python scripts to run LFPy running NEURON:
 
-'simulation/LFP_calc.py'#_osc_sine.py' #random inputs all over the cell
-'simulation/LFP_Y_symmetric.py'  #2 synaptic inputs 
-'simulation/LFPymod_example6.py' # examply from LFPy page
-'simulation/LFP_calc_sine.py' #oscillatory inputs
-'simulation/LFP_calc_constInj.py' #constant current injection to soma
+- 'simulation/LFP_calc.py'#_osc_sine.py' #random inputs all over the cell
+- 'simulation/LFP_Y_symmetric.py'  #2 synaptic inputs 
+- 'simulation/LFPymod_example6.py' # examply from LFPy page
+- 'simulation/LFP_calc_sine.py' #oscillatory inputs
+- 'simulation/LFP_calc_constInj.py' #constant current injection to soma
    
 
 
 ## skCSD reconstruction of membrane currents from extracellular potentials using the morhology of the cell
 
-running the  skCSD method:
-Package dependencies: 
-scatterplot3d, foreach, doMC, MASS 
-'RunMultiple.R': running for multiple dataset without GUI with default parameters,  working for the simulated data structures (elcoord_x_y_z, myLFP,segcoordinates.txt, connections.txt, membcurr, seglength )
-'utils/kernel_withoutGUI.R': setting ranges of parameter and calculatins skCSD 
-'utils/kernel_basisfunctions_Regularizal.R': 
+#### To run the  skCSD method:
+
+There are the following R package dependencies: 
+scatterplot3d, foreach, doMC, MASS
+To install run:
+> install.packages(c(" foreach", "doMC")))
+
+
+'kernel.R' is the main script to run the skCD method with selected parameters, to run:
+>source('kernel.R') #working drectory should be set to the main folder of the program
+
+##### Required input files for in case of a simulational/experimental setup:
+
+- segcoordinates.txt (coordinates of segments from NEURON simulations, each row in the membcurr file belongs to a segment in the same order)
+- elcoord_x_y_z (electrode coordinates x for each electrode, then y for each then z)
+- myLFP (potentials at the electrode locations)
+- connections.txt contains the connection info of the segments, which is connected to which other  
+- membcurr (ground truth membrane currents)
+- seglength: length of each segment
+
+For an example for these files please check the 'simulation/cell_1' pr 'simulation/gang_9x9_200' folders.
+
+Additional scripts (not required for running):
+- 'utils/kernel_basisfunctions_Regularizal.R': implementation of the skCSD method
+if you want to run the skCSD method on several datasets parallelly or want to run it without GUI:
+- 'RunMultiple.R': running for multiple dataset without GUI with default parameters,  working for the simulated data structures (elcoord_x_y_z, myLFP,segcoordinates.txt, connections.txt, membcurr, seglength )
+- 'utils/kernel_withoutGUI.R': setting ranges of parameter and calculatins skCSD 
 
 
 
-Test cases
+#### Test cases
 
-Required input files
 
 
 ## Visualization
@@ -85,6 +105,5 @@ Required input files
 Some extra features:
 kernel_withoutGUI_SelectedElect.R: select electrode  distribution in different  ways
 'utils/kernel_basisfunctions_Regularizal.R' - there is an option to use  background activity, description of output files?
-
 
 
