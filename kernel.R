@@ -18,7 +18,7 @@ kernel_calc <- function() {
     dir.create(where2save)
     
     
-    outnameSub<-"skCSDreconsruct/"
+    outnameSub<-"skCSDreconstruct/"
     
     outname<-paste(where2save,"/",outnameSub,sep="")
     dir.create(outname)
@@ -32,52 +32,50 @@ kernel_calc <- function() {
     basis.reg.max<-svalue(basis.reg.max.g)
     basis.reg.step<-svalue(basis.reg.step.g)
     
-
+DirData<-where2save
+    setwd(DirData)
     
-    
-    
-    #setwd(where2save)
     #reading in electrode coordinates
     
-    elec.kord <- as.matrix(read.table(svalue(elec.cord.location)))
+    elec.kord <- as.matrix(read.table("elcoord_x_y_z"))
     elec.kord<-matrix(elec.kord,ncol=3)
+    
+    outname<-paste(where2save,"/",outnameSub,sep="")
+    #if(file.exists(outname)) file.remove(list.files("outname"))
+    dir.create(outnameSub)
     
     #number of electrodes
     #LFP
     #lfp<-read.table('myLFP',colClasses='numeric' )
-    LFP<-as.matrix(read.table(svalue(lfp.location )))
+    LFP<-as.matrix(read.table("myLFP" ))
     lfpmatr<-dim(LFP)
     LFP<-matrix(as.numeric(LFP),nrow=lfpmatr[1])
-  
+    
     #Don't forget to write out also these parameters
-
-
-
     #m(lfpmatr)
     #morphology
-    morpho <-read.table(svalue(membrane.current.location))
+    morpho <-read.table("segcoordinates.txt")
     #connection information
-    connections <- read.table(svalue(connection.info.location))
+    connections <- read.table("connections.txt")
     #cat(connections)
     #membrane currents
-    memb.currents <- as.matrix(read.table(svalue(membraneCurrent)))
+    memb.currents <- as.matrix(read.table("membcurr"))
     cmatr<-dim(memb.currents )
     memb.currents <-matrix(as.numeric(memb.currents),nrow=cmatr[1])
     #rm(lfpmatr)
     #length of segments
-    seg.length <- as.numeric(as.matrix(read.table(svalue(SegLength))))
+    seg.length <- as.numeric(as.matrix(read.table("seglength")))
+    
+    rangeX<-range(elec.kord[,1],morpho[,1])
+    rangeY<-range(elec.kord[,2],morpho[,2])
+    rangeZ<-range(elec.kord[,3],morpho[,3])
     #################################
+    setwd(wherearewenow)
     
     source('utils/kernel_basisfunctions_Regularizal.R',local=TRUE,verbose=TRUE)
-   # source('alprogik/errorCalcFun.R')
-    #source('/media/BA0ED4600ED416EB/agy/ksCSD_SVN/trunk/alprogik/egyesitett_ksCSDguihoz.R',local=TRUE)
-    
-    #Rprof('profilekernel_sim.out',memory.profiling=TRUE)
-    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.reg.min, 
-                              basis.reg.max, basis.reg.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) 
-    #Rprof(NULL)
-    image(t(sCSD_currents))
-  }
+    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.number.min, 
+                              basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) #,R.V ,source.V.t)
+  }  
   
   win <- gwindow("Calculation of Kernel Functions")
   gp <- ggroup(horizontal=FALSE, cont=win)
@@ -120,81 +118,11 @@ kernel_calc <- function() {
   ###############################################
   ###########################################
   #LOading files
-  #tmp <- gframe("Loading files", container=gp)#, expand=TRUE)
-  #Electrode coordinates
-  glabel("Electrode coordinates", container=gp)
-  elec.cord.location <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/elcoord_x_y_z'), quote=FALSE, cont=gp)
-  #cb <- gcombobox("", cont=g)
-  
-  #addHandlerChanged(elec.cord.location, handler=function(h,...) {
-  #  elec.kord <- as.matrix(read.table(svalue(elec.cord.location )))
-  #elec.kord<-matrix(elec.kord,ncol=3)
-  #el.nb<-dim(elec.kord)[1] #number of electrodes
-  #})
-  #LFP
-  glabel("LFP", container=gp)
-  lfp.location <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/myLFP'), quote=FALSE, cont=gp)
-  #cb <- gcombobox("", cont=g)
-  
-  #addHandlerChanged(lfp.location, handler=function(h,...) {
-  #  LFP <- as.matrix(read.table(svalue(lfp.location )))
-  #image(LFP)
-  #})
-  
-  
-  ##Location of membrane currents
-  #Membrane currents
-  glabel("Morphology or membrane currents location", container=gp)
-  membrane.current.location <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/segcoordinates.txt'), quote=FALSE, cont=gp)
-  #cb <- gcombobox("", cont=g)
-  
-  #addHandlerChanged(membrane.current.location , handler=function(h,...) {
-  # morpho <- as.matrix(read.table(svalue(membrane.current.location)))
-  #  cb[] <- colnames(x)
-  #})
-  ##
-  ##Location of membrane currents
-  #Membrane currents
-  glabel("Connection information", container=gp)
-  connection.info.location <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/connections.txt'), quote=FALSE, cont=gp)
-  #cb <- gcombobox("", cont=g)
-  
-  #addHandlerChanged(connection.info.location , handler=function(h,...) {
-  # connections <- as.matrix(read.table(svalue(connection.info.location )))
-  #  cb[] <- colnames(x)
-  #cat(connections)
-  #})
-  
-  
-  #Membrane currents, if known
-  glabel("Membrane currents", container=gp)
-  membraneCurrent <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/membcurr'), quote=FALSE, cont=gp)
-  #membraneCurrent <- gfilebrowse("NA", quote=FALSE, cont=gp)
-  
-  #Length of the segments,if known
-  
-  glabel("Length of segments", container=gp)
-  SegLength <- gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/seglength'), quote=FALSE, cont=gp)
-  
-  
-  #cb <- gcombobox("", cont=g)
-  
-  #addHandlerChanged(membraneCurrent, handler=function(h,...) {
-  # memb.currents <- as.matrix(read.table(svalue(membraneCurrent  )))
-  #  cb[] <- colnames(x)
-  #image(memb.currents)
-  #})
-  
-  ######################################
-  
-  
-  glabel("Where to save the results", container=gp)
-  #simulation.location.name<- gedit("/media/BA0ED4600ED416EB/agy/kCSD/progik/bs_futtat/branching_simple2014/simulation/proba",width = 50, container=gp)
+  glabel("Where is the data for skCSD?", container=gp)
   simulation.location.name<-gfilebrowse(paste0(wherearewenow, '/simulation/gang_9x9_200/'), 
                                         type='selectdir', quote=FALSE, cont=gp)
   
-  #gfilebrowse (text = "Simulation location...", type = "selectdir", quote = TRUE, 
-  #        container =gp) 
+  
   
   
   
@@ -209,6 +137,7 @@ kernel_calc <- function() {
   
   
   setwd(wherearewenow)
+  
   
 }
 ############
