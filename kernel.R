@@ -31,7 +31,10 @@ kernel_calc <- function() {
     basis.reg.min<-svalue(basis.reg.min.g)
     basis.reg.max<-svalue(basis.reg.max.g)
     basis.reg.step<-svalue(basis.reg.step.g)
+  
     
+    M<-svalue(basis.numb.g)
+      
 DirData<-where2save
     setwd(DirData)
     
@@ -74,7 +77,7 @@ DirData<-where2save
     
     source('utils/kernel_basisfunctions_Regularizal.R',local=TRUE,verbose=TRUE)
     sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.number.min, 
-                              basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) #,R.V ,source.V.t)
+                              basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save,M) #,R.V ,source.V.t)
   }  
   
   win <- gwindow("Calculation of Kernel Functions")
@@ -112,6 +115,9 @@ DirData<-where2save
   basis.reg.step.g<-gedit("1", container=tmp, coerce.with=as.numeric)
 
 
+  tmp <- gframe("Basis number", container=gp, expand=TRUE)
+  glabel("M:", container=tmp)
+  basis.numb.g<-gedit("512", container=tmp, coerce.with=as.numeric)
   
   
   

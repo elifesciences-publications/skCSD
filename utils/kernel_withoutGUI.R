@@ -9,9 +9,9 @@ library('MASS')
 registerDoMC(cores=24)
 
 #Directory with all the data... output of LFPy
-
+DirData<-"/home/zoe/agy/skCSD_public/simulation/cell_Y/"
 where2save<-DirData #"/home/dcserpan/Documents/skCSD/skCSDnew/trunk/simulation/Y_el16_m200_600_d100"
-outnameSub<-"kernelOut_4/"
+outnameSub<-"skCSDreconstruct/"
 wherearewenow<-getwd()
 dir.create(where2save)
 
@@ -69,7 +69,7 @@ setwd(wherearewenow)
 if( kCSDversion== "wobg") {
   source('utils/kernel_basisfunctions_Regularizal.R',local=TRUE,verbose=TRUE)
   sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.number.min, 
-                            basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save) #,R.V ,source.V.t)
+                            basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2savem, M) #,R.V ,source.V.t)
 }
 if( kCSDversion== "wbg"){
   source('utils/kernel_basisfunctions_new_with_ksCSD.R',local=TRUE,verbose=TRUE)

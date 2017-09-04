@@ -252,7 +252,8 @@ fcz.l<-vonalfun.l[[3]]
 ############################################
 
 ######################################x #memb.currents is optional
-ksCSD_all<-function( basis.width.min, basis.width.max, basis.width.step, basis.number.min, basis.number.max, basis.number.step, LFP, elec.kord, memb.currents, seg.length, where2save){
+ksCSD_all<-function( basis.width.min, basis.width.max, basis.width.step, basis.number.min,
+                     basis.number.max, basis.number.step, LFP, elec.kord, memb.currents, seg.length, where2save,M){
   #LFP<-as.matrix(read.table("myLFP"))
   #elec.kord<-as.matrix(read.table("elcoord_x_y_z"))
   #memb.currents<-as.matrix(read.table("membcurr"))
@@ -311,7 +312,8 @@ ksCSD_all<-function( basis.width.min, basis.width.max, basis.width.step, basis.n
       proctime.m.r<-proc.time()
       lambda<-M.all[m]
       R<-R.all[r]
-      M<-512
+      
+      if(missing(M)) M<-512
       #base <-"poli"
       #base<-"gauss"
       #calculation of the location of basis functions
