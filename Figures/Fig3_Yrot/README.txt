@@ -1,0 +1,1 @@
+The generation of this figure is not thhat straihtforward, the correct working directory and  pathes are needed to be set. This script  you'll need  to have Y_el4x16_Elrand_symm_d50_ver0 and Y_el4x16_RotS_symm_d50_ver0  folders downloaded. 

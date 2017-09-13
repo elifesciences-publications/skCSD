@@ -1,0 +1,106 @@
+For running the scriopts generating the figures certain R libraries need to be installed and data and file pathes to be set correctly. For each figure a folder containing the script to make the figure and in most of the cases the dataset used is provided except for Figure 7., in which case it would mean GBs of data. 
+The folders contain files not used for the figures as well, but selection of only the used ones would take a lot of effort. For this the reason is, that in most cases the used files containg the best skCSD reconstructions are selected automatically by the sripts based on the values of reconstruction error which is stored in an other file, hence the data folders vontain the reconstruction of skCSD distribution for every possible parameter combination.
+
+
+
+Figure 1. 
+
+
+BSCosPlot.R was used to create the figures, data is provided.
+
+From each subfolder in the Fig1_BallStickOsc folder the "ErroTable" file was used to find the smallest L1 errors "kernelOut_4/ErrorL1Raw_Noise_SNR0" and the rows and columns of this value identified the basis width and lambda parameters. By using these parameters for the various setups (8,16,128) from the kernelOut_4 subfolders the reconstruction files ("kernelOut_4/skCSDall_M512_R*lambda*") were opened and used to prepare the figures.  The "sameplace.txt" shows that which specific segments (which line in the file) are the sum of the skCSD reconstructions on the locations on the curve fitted onto the morphology.
+
+----------------------------------------------------------------
+
+Figure 2. 
+
+PlotBSsynInputs.R contains the script to generate the figure in the paper, the datasets are in the subfolders.
+
+
+----------------------------------------------------------------
+
+
+Figure 3. 
+
+The CurrentsonMorphoo2Yra.R script is used to create figures for the parameter-set with the smallest erro  fpr the selected setups (4x16 electrode grid perpendicular to  or parallel with the plane of the cell ) for each timestep from 0 to 70 ms. From these figures either the ones at 15.5 ms ir 5.5 ms wer selected.
+
+#todo: copy rotated dataset!!! 
+
+----------------------------------------------------------------
+
+Figure 4. 
+
+Y_randomElsPlot.R was used to create the figure by loading the reconstructions with smallest recontruction error for certain tiimestep.
+
+###All dataset should be given?
+
+
+----------------------------------------------------------------
+
+
+Figure 5. 
+CurrentsonMorphoGang.R was used to create the figure, data used for the figure is provided.
+
+
+----------------------------------------------------------------
+
+Figure 6. 
+
+YnoisePlot.R was used to create the figure, data used for the figure is provided.
+
+
+--------------------------------------------------
+
+Figure 7. 
+gang_multipleMEA.R  was used to create the figure.
+
+Providing each dataset would be few GBs
+
+
+--------------------------------------------------
+
+Figure 8. 
+
+CurrentsonMorphoDomi.R was used to create the figures for each  timestep, data used for the figure is provided. 
+
+------------------------------------
+General structure of foders containing data files and the list of often used files:
+
+
+-segcoordinates.txt (coordinates of segments from NEURON simulations, each row in the membcurr file belongs to a segment in the same order)
+- myLFP (potentials at the electrode locations)
+-elcoord_x_y_z (electrode coordinates x for each electrode, then y for each then z)
+- membcurr (ground truth membrane currents)
+- 'coordsstart_x_y_z' and 'coordsend_x_y_z' files contain the coordinates for the endpoints of the segments, these I used to figure out which segment is connected to which other one(s) and this connection information I used to create the curve along the morphology ( the swc file I only used for the NEURON-LFPy simulations, but the returns membrane currents belong the the segments segmented by NEURON so I needed to figure out the connections again (there could be more elegant ways of course by using the parent children information provided by NEURON, but I am not an expert of using NEURON, so matching the coordinates was easier. ))
+-connections.txt contains the connection info of the segments, which is connected to which other  
+
+General structure folderof skCSD reconstruction:
+
+-kernelOut_4 folder contains the B and B tilda matrices for various parameters and the skCSD recontructions as ksCSD_Matr512* 
+
+- EL1Error_SNR* contains the calculated L1 errors  between the ground truth and reconstructions with various basis width and lamda parameters (each row corresponds to basis width 8, 16, 32, 64, 128 each column to various lambda: 0.00001,0.0001,0.001,0.01,0.1) 
+----------------------------------------------------------------
+
+Supplementary movies.
+S1 video was generated as a series of plots like Figure 5, S2 video as for Figure 8.
+
+----------------------------------------------------------------
+Scripts for simulating the data
+
+
+Simulation of ground truth data:
+The parameters for the NEURON simulation is to be found in Table 2.
+The used morphologies  are in the skCS_scripts/simulation/morphology folder.
+The skCS_scripts/LFPy.R script runs a GUI for the LFPy-NEURON simulation by using various Python syripts pending on the selected neuron-electrode setups. Table 1. is a summary of the simulation setups used in the paper. More detailed information about the simulation, electrode position and synaptic input distribution is given at the related section in the paper.
+
+skCSD distribution can be valculated by running the kernel_withoutGUI.R script, the location of the folder containing the data ("DirData") should be chosen in the beginning.
+ 
+
+
+
+
+
+
+
+
+
