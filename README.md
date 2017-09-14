@@ -94,6 +94,15 @@ if you want to run the skCSD method on several datasets parallelly or want to ru
 
 ## Visualization
 
+The scripts for plotting the  reults of the skCSD reconstructions are to be found in the Figure folder.
+For running the scripts generating the figures certain R libraries need to be installed and file pathes need to be set correctly. For each figure a folder containing the script to make the figure and in most of the cases the dataset used is provided except for Figure 7., in which case it would mean GBs of data. 
+The folders contain files, which were not used for the figures as well, but selection of only the used ones would take a lot of effort. For this the reason is, that in most cases the used files containg the best skCSD reconstructions are selected automatically by the sripts based on the values of reconstruction error which is stored in an other file, hence the data folders contain the reconstruction of skCSD distribution for every possible parameter combination.
+Link to data: https://www.dropbox.com/sh/aqljnsps9xvtrhx/AABJDn3LzRpwTQF4ukHh8__Ua?dl=0
+
+
+
+
+
 
 
 
