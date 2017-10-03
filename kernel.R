@@ -76,8 +76,8 @@ DirData<-where2save
     setwd(wherearewenow)
     
     source('utils/kernel_basisfunctions_Regularizal.R',local=TRUE,verbose=TRUE)
-    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.number.min, 
-                              basis.number.max, basis.number.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save,M) #,R.V ,source.V.t)
+    sCSD_currents<-ksCSD_all( basis.width.min, basis.width.max, basis.width.step, basis.reg.min, 
+                              basis.reg.max, basis.reg.step, LFP , elec.kord ,memb.currents,seg.length  ,where2save,M) #,R.V ,source.V.t)
   }  
   
   win <- gwindow("Calculation of Kernel Functions")

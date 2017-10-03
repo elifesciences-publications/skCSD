@@ -1,5 +1,6 @@
 
-DirDataName<-c("simulation/cell_DomiShifted","simulation/gang_9x9_50","simulation/gang_17x17_50","simulation/gang_9x9_100")#,"simulation/gang_5x5_400")#simulation/MCS",, "simulation/Ganglion_d17.5_128Regular", )
+DirDataName<-paste0("simulation/",c("Y_IED25","Y_IED50","Y_IED100","Y_IED200"))
+#DirDataName<-c("simulation/cell_DomiShifted","simulation/gang_9x9_50","simulation/gang_17x17_50","simulation/gang_9x9_100")#,"simulation/gang_5x5_400")#simulation/MCS",, "simulation/Ganglion_d17.5_128Regular", )
  # DirData<- DirDataName[1]
 #source("test10/kernel_withoutGUI.R")
 

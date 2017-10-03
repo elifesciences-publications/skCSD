@@ -1,4 +1,4 @@
-For running the scriopts generating the figures certain R libraries need to be installed and data and file pathes to be set correctly. For each figure a folder containing the script to make the figure and in most of the cases the dataset used is provided except for Figure 7., in which case it would mean GBs of data. 
+For running the scripts generating the figures certain R libraries need to be installed and data and file pathes to be set correctly. For each figure a folder containing the script to make the figure and in most of the cases the dataset used is provided except for Figure 7., in which case it would mean GBs of data. 
 The folders contain files not used for the figures as well, but selection of only the used ones would take a lot of effort. For this the reason is, that in most cases the used files containg the best skCSD reconstructions are selected automatically by the sripts based on the values of reconstruction error which is stored in an other file, hence the data folders vontain the reconstruction of skCSD distribution for every possible parameter combination.
 
 
@@ -93,7 +93,7 @@ The parameters for the NEURON simulation is to be found in Table 2.
 The used morphologies  are in the skCS_scripts/simulation/morphology folder.
 The skCS_scripts/LFPy.R script runs a GUI for the LFPy-NEURON simulation by using various Python syripts pending on the selected neuron-electrode setups. Table 1. is a summary of the simulation setups used in the paper. More detailed information about the simulation, electrode position and synaptic input distribution is given at the related section in the paper.
 
-skCSD distribution can be valculated by running the kernel_withoutGUI.R script, the location of the folder containing the data ("DirData") should be chosen in the beginning.
+skCSD distribution can be calculated by running the kernel_withoutGUI.R script, the location of the folder containing the data ("DirData") should be chosen in the beginning.
  
 
 

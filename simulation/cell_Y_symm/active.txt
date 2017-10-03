@@ -1,0 +1,1 @@
+/home/zoe/agy/skCSD_public/simulation/morphology/active.hoc

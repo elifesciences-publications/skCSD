@@ -145,7 +145,7 @@ cell.set_pos(xpos = LFPy.cell.neuron.h.x3d(0) , ypos = LFPy.cell.neuron.h.y3d(0)
 
 	    # Define synapse parameters
 synapse_parameters = {
-      'idx' : 62, #72, #100 0.00 500
+      'idx' : 62, #59 #72, #100 0.00 500
       'e' : 0.,                   # reversal potential
       'syntype' : 'ExpSyn',       # synapse type
       #'tau' : 10.,                # syn. time constant
@@ -156,7 +156,7 @@ synapse_parameters = {
 }
 
 synapse_parameters2 = {
-      'idx' : 33, #43,
+      'idx' : 33, #365, 
       'e' : 0.,                   # reversal potential
       'syntype' : 'ExpSyn',       # synapse type
       #'tau' : 10.,                # syn. time constant

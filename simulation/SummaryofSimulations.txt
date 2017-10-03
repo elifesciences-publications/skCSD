@@ -1,2 +1,15 @@
 cell_1 Ballstick random 50 x 0 600 0 600 4 1 0.3 1 123456 
 cell_1 Gang_Simple random 50 z -200 600 -200 200 4 4 0.3 1 123456 
+cell_Y Y_shaped random 50 y -200 600 -200 200 4 4 0.3 1 123456 
+cell_Y_symm Y_shaped Y_symmetric 50 y -200 600 -200 200 4 4 0.3 1 123456 
+cell_symm64 Y_shaped Y_symmetric 50 y -200 600 -200 200 4 16 0.3 1 123456 
+Y_IED25 Y_shaped Y_symmetric 50 y 225 325 -50 50 5 5 0.3 1 123456 
+Y_IED50 Y_shaped Y_symmetric 50 y 175 375 -100 100 5 5 0.3 1 123456 
+Y_IED50 Y_shaped Y_symmetric 50 y 175 375 -100 100 5 5 0.3 1 123456 
+Y_IED50 Y_shaped Y_symmetric 50 y 175 375 -100 100 5 5 0.3 1 123456 
+Y_IED100 Y_shaped Y_symmetric 50 y 75 475 -200 200 5 5 0.3 1 123456 
+Y_IED200 Y_shaped Y_symmetric 50 y -125 675 -400 400 5 5 0.3 1 123456 
+Y_SameIED200 Y_shaped Y_symmetric 50 y -125 675 -400 400 5 5 0.3 1 123456 
+Y_SameIED100 Y_shaped Y_symmetric 50 y 75 475 -200 200 5 5 0.3 1 123456 
+Y_SameIED50 Y_shaped Y_symmetric 50 y 175 375 -100 100 5 5 0.3 1 123456 
+Y_SameIED25 Y_shaped Y_symmetric 50 y 225 325 -50 50 5 5 0.3 1 123456 

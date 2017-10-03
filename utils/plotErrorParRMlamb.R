@@ -1,6 +1,7 @@
-
+library(data.table)
+library(MASS)
 #ScriptLocation<-"/media/zoe/BA0ED4600ED416EB/agy/ksCSD_2014/trunk/"
-ScriptLocation<-"/home/csdori/ksCSD_2014/trunk/"
+ScriptLocation<-"/home/zoe/agy/ksCSD_2014/trunk/"
 SumPlotPlace<-paste0(ScriptLocation,"plots/summary/")
 source(paste0(ScriptLocation,"alprogik/KernSmoothDistance.R"))
 dir.create(paste0(ScriptLocation,"plots/"))
@@ -16,16 +17,16 @@ SNR<-0
 lambda<-0
 
 
-SimPath<-paste0("/home/zoe/agy/skCSD_public/simulation/cell_Y_symm/")
+SimPath<-paste0("/home/zoe/agy/skCSD_public/simulation/") #cell_Y_symm/
 
 #SimPath<-paste0("/home/zoe/Dropbox/skCSD/data/")
 
 ElNumb<-32
 
-locationsKernel<-paste0("cell_Y_symm/")
+locationsKernel<-"cell_Y_symm/"
 
 locationsData<-locationsKernel
-outname1<-"skCSDreconstruct/"
+outname1<-paste0("skCSDreconstruct/")
 
 
 source(paste0(ScriptLocation,"alprogik/Colors_BlueRed.R"))
@@ -139,5 +140,63 @@ JustL1Reg<-function(SimPath,locationsKernel,locationsData,SNR,M){
 }
 
 
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,16)
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,32)
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,64)
 
-korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,M)
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,128)
+
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,256)
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,512)
+
+korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,1024) #behalt
+#korte<-JustL1Reg(SimPath,locationsKernel,locationsData,SNR,M)
+
+M<-128
+outname<-paste0(SimPath, locationsData[1])
+
+
+hibak16<-as.matrix(read.table(paste(outname,outname1,
+                                    "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",16,sep="")))
+
+hibak32<-as.matrix(read.table(paste(outname,outname1,
+                                    "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",32,sep="")))
+
+hibak64<-as.matrix(read.table(paste(outname,outname1,
+                                     "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",64,sep="")))
+
+hibak128<-as.matrix(read.table(paste(outname,outname1,
+        "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",128,sep="")))
+hibak256<-as.matrix(read.table(paste(outname,outname1,
+                                     "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",256,sep="")))
+hibak512<-as.matrix(read.table(paste(outname,outname1,
+                                     "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",512,sep="")))
+hibak1024<-as.matrix(read.table(paste(outname,outname1,
+                                     "/ErrorL1Smoothed_Noise","_SNR",SNR,"_M",1024,sep="")))
+
+zrange<-range(hibak32,hibak128,hibak512,hibak1024)
+png("YsimmErrorM.png",un="in", width=5*1.5,  height=2*1.5, res=300  )
+
+par(mfrow=c(1,5),  mar=c(4,4,2,0),oma=c(0,0,0,2))
+
+image(1:5, 1:5,hibak32, xaxt="n",yaxt="n",xlab="R",ylab="Lambda", zlim=zrange,col=tim.colors(200), main="M = 32")
+axis(1,1:5, R.all)
+axis(2,1:5, lambda.all)
+
+
+image(1:5, 1:5,hibak128, xaxt="n",yaxt="n",xlab="R",ylab="", zlim=zrange,col=tim.colors(200), main="M = 128")
+axis(1,1:5, R.all)
+#axis(2,1:5, lambda.all)
+
+image(1:5, 1:5,hibak512, xaxt="n",yaxt="n",xlab="R",ylab="", zlim=zrange,col=tim.colors(200), main="M = 512")
+axis(1,1:5, R.all)
+#axis(2,1:5, lambda.all)
+
+image(1:5, 1:5,hibak1024, xaxt="n",yaxt="n",xlab="R",ylab="", zlim=zrange,col=tim.colors(200), main="M = 1024")
+axis(1,1:5, R.all)
+#axis(2,1:5, lambda.all)
+
+
+plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='', xlim=c(0,1),ylim=c(0,1))
+image.plot(hibak128,legend.only = TRUE, zlim=zrange)#,  smallplot=c(0.1,0.1,0.3,0.9))
+dev.off()

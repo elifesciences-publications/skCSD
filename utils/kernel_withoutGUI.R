@@ -9,7 +9,7 @@ library('MASS')
 registerDoMC(cores=24)
 
 #Directory with all the data... output of LFPy
-DirData<-"/home/zoe/agy/skCSD_public/simulation/cell_Y/"
+#DirData<-"/home/zoe/agy/skCSD_public/simulation/cell_Y/"
 where2save<-DirData #"/home/dcserpan/Documents/skCSD/skCSDnew/trunk/simulation/Y_el16_m200_600_d100"
 outnameSub<-"skCSDreconstruct/"
 wherearewenow<-getwd()
