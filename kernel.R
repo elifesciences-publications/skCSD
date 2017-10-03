@@ -47,6 +47,7 @@ DirData<-where2save
     #if(file.exists(outname)) file.remove(list.files("outname"))
     dir.create(outnameSub)
     
+    
     #number of electrodes
     #LFP
     #lfp<-read.table('myLFP',colClasses='numeric' )
