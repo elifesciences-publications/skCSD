@@ -1,5 +1,7 @@
 # skCSD scripts
 
+### This code is associated with the paper from Cserpán et al., "Revealing the distribution of transmembrane currents along the dendritic tree of a neuron from extracellular recordings". eLife, 2017. http://dx.doi.org/10.7554/eLife.29384
+
 The scripts can be devided into 3 main groups:
 1. Simulation of membrane currents and virtual recodigs of extracellular potentials
 2. skCSD reconstruction of membrane currents from extracellular potentials using the morhology of the cell
